@@ -29,7 +29,6 @@ window.onload = function () {
   // 초기화 메서드 호출
   innerReset(error);
 
-  // [ ID 입력문자 유효성검사 ]
   join.id.onkeydown = function () {
     innerReset(error); // 초기화 메서드 호출
     var idLimit = /^[a-zA-Z0-9-_]{5,20}$/; //정규식 5~20자 (a~z, A~Z, 0~9, -, _만 입력가능)
@@ -38,64 +37,6 @@ window.onload = function () {
       // id의 오류 문구삽입
       document.getElementById(errorId[0]).innerHTML =
         '5~20자의 영문 소대문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.';
-      checkInputValue($(this));
-    }
-  };
-
-  $('#join-btn').click(function (event) {
-    event.preventDefault(); // 버튼의 기본 동작을 막음
-    checkInputValues();
-  });
-
-  //회원가입 버튼
-  function clickRegister() {
-    //event.preventDefault(); // 버튼의 기본 동작을 막음
-    checkInputValues();
-  }
-
-  function checkInputValues() {
-    var isValid = true;
-
-    // 아이디 :
-    // (중복체크, 특수문자)
-    var idRegex = /^[a-zA-Z0-9]{1,20}$/; // 특수문자 없이 20자 이내
-    if (!idRegex.test($('#id').val())) {
-      $('#id').next('.error_box').css('display', 'block');
-      isValid = false;
-    }
-
-    // 비밀번호 :
-    // (대문자 혹은 특수만 숫자 필요시 체크)
-    var pwRegex =
-      /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"])([^\s]){8,16}$/; // 영문,숫자,특수문자 8-16자
-    var pswd1 = $('#pswd1').val();
-    var pswd2 = $('#password').val();
-    if (pswd1 !== pswd2 || !pwRegex.test(pswd1)) {
-      $('#pswd1').next('.error_box').css('display', 'block');
-      isValid = false;
-    }
-
-    // 이메일 : 선택
-    var emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/; // 이메일 유효성 검사
-    var emailValue = $('#email').val();
-    if (emailValue && !emailRegex.test(emailValue)) {
-      $('#email').next('.error_box').css('display', 'block');
-      isValid = false;
-    }
-
-    if (isValid) {
-      window.location.replace('index.html');
-    }
-  }
-};
-
-/* $(document).ready(function () {
-  function checkInputValue(input) {
-    if (input.val() === '') {
-      input.next('.error_box').css('display', 'block');
-    } else {
-      input.next('.error_box').css('display', 'none');
->>>>>>> 412f710b2c46e3be1aa26aff806d850e39e4d5f9
     }
   };
   // [ PW 입력문자 유효성검사 ]
@@ -106,7 +47,7 @@ window.onload = function () {
       //입력값과 정규식 범위와 같지 않다면
       // pw의 오류 문구삽입
       document.getElementById(errorId[1]).innerHTML =
-        ' 10~20자의 영문 소대문자, 숫자와 특수기호만 사용 가능합니다.';
+        " 10~20자의 영문 소대문자, 숫자와 특수기호 '~!@#$%^&*()_-'만 사용 가능합니다.";
     }
   };
   // [ PW 재확인 입력문자 초기화 ]
@@ -121,18 +62,17 @@ window.onload = function () {
     //입력값과 정규식 범위와 같지 않다면
     innerReset(error); // 초기화 메서드 호출
     var emailLimit = /[0-9a-zA-Z-_.]/; // 정규식 0~9, a~z, A~Z, -, _, .내에서만 입력가능
-    if (!emailLimit.test(input[4].value)) {
+    if (!emailLimit.test(input[5].value)) {
       //입력값과 정규식 범위와 같지 않다면
       // 이메일의 오류 문구삽입
-      document.getElementById(errorId[4]).innerHTML =
+      document.getElementById(errorId[5]).innerHTML =
         ' 올바른 형식이 아닙니다. 영문,숫자, (-)(_)(.) 입력만 가능합니다.';
     }
   };
-  //submit 실행시 수행할 동작
+
   join.onsubmit = function () {
     //join에서 submit이 실행된다면 수행할 함수
-    var errorStr = [' 를', ' 를', ' 을', ' 을', ' 을'];
-
+    var errorStr = [' 를', ' 를', ' 을', '을', '을'];
     innerReset(error); // 오류문구 초기화
 
     // [ input 공백확인 ]
@@ -145,7 +85,6 @@ window.onload = function () {
         return false; // 종료 (포커스 이동유지를 위해 false 종료)
       }
     }
-
     //유효성검사) 비밀번호 재확인
     if (join.pw.value != join.pwCheck.value) {
       document.getElementById('pwCheckError').innerHTML =
@@ -157,6 +96,7 @@ window.onload = function () {
     // 정규식 변수 모음
     var idLimit = /^[a-zA-Z0-9-_]{5,20}$/; //정규식(a~z, A~Z, 0~9, -, _만 입력가능)
     var pwLimit = /^[a-zA-Z0-9~!@#$%^&*()_-]{10,20}$/; ///[a-zA-Z0-9]{10, 20}/; //정규식(a~z, A~Z, 0~9,~!@#$%^&*()_-특수문자 만 입력가능)
+    var pnumLimit = /^01[0|1|6|7|8|9]{1}[0-9]{8}$/; // 01로 시작, 0,1,6,7,8,9 중 한자리, 0~9에서 8자리 입력
     var emailLimit = /[0-9a-zA-Z-_.]/; // 정규식 0~9, a~z, A~Z, -, _, .내에서만 입력가능
 
     // [ ID 유효성검사 ]
@@ -170,100 +110,30 @@ window.onload = function () {
     // [ PW 유효성검사 ]
     if (!pwLimit.test(input[1].value)) {
       document.getElementById(errorId[1]).innerHTML =
-        ' 10~20자의 영문 소대문자, 숫자와 특수기호만 사용 가능합니다.';
+        " 10~20자의 영문 소대문자, 숫자와 특수기호 '~!@#$%^&*()_-'만 사용 가능합니다.";
       //console.log(input[1].value);
       //console.log(pwLimit.test(input[1].value));
       join.pw.focus(); // 포커스 이동
       return false;
     }
+
     // [ email 아이디 유효성검사 ]
-    if (!emailLimit.test(input[4].value)) {
-      document.getElementById(errorId[4]).innerHTML =
+    if (!emailLimit.test(input[5].value)) {
+      document.getElementById(errorId[5]).innerHTML =
         ' 올바른 형식이 아닙니다. 영문,숫자, (-)(_)(.) 외 입력은 불가합니다.';
       join.email.focus(); // 포커스 이동
       return false;
     }
-
-    // [ email 주소선택 유효성검사 ]
-    if (document.getElementById('mail_Select').value == '이메일 선택') {
-      document.getElementById(errorId[4]).innerHTML = ' 이메일을 선택해주세요.';
+    var consentCheck = document.getElementById('check');
+    //console.log(consentCheck);
+    if (!consentCheck.checked) {
+      document.getElementById('consentError').innerHTML =
+        '개인정보 수집이용 동의를 해주세요.';
       return false;
     }
-    //console.log(document.getElementById("mail_Select").value);
 
-    function register() {
-      if (
-        validateName() &&
-        validateEmail() &&
-        validatePassword() &&
-        validateConfirmPassword()
-      ) {
-        alert('가입이 완료되었습니다.');
-        window.location.href = 'index.html';
-      } else {
-        alert('입력값을 다시 확인해주세요.');
-      }
-    }
+    alert(
+      '회원가입이 완료되었습니다. 참치라이더의 멤버가 되신 것을 환영합니다!! :D'
+    );
   }; //join.onsublit
 }; //window
-
-/*$(document).ready(function () {
-  function checkInputValue(input) {
-    if (input.val() === '') {
-      input.next('.error_box').css('display', 'block');
-      return false;
-    } else {
-      input.next('.error_box').css('display', 'none');
-      return true;
-    }
-  }
-
-  function checkInputValues() {
-    var isValid = true;
-
-    // 아이디 :
-    // (중복체크, 특수문자)
-    var idRegex = /^[a-zA-Z0-9]{1,20}$/; // 특수문자 없이 20자 이내
-    if (!idRegex.test($('#id').val())) {
-      if (!checkInputValue($('#id')) || !idRegex.test($('#id').val())) {
-        isValid = false;
-      }
-    }
-
-    // 비밀번호 :
-    // (대문자 혹은 특수만 숫자 필요시 체크)
-    var pwRegex =
-      /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"])([^\s]){8,16}$/; // 영문,숫자,특수문자 8-16자
-    var pswd1 = $('#pswd1').val();
-    var pswd2 = $('#password').val();
-    if (pswd1 !== pswd2 || !pwRegex.test(pswd1)) {
-      $('#pswd1').next('.error_box').css('display', 'block');
-      checkInputValue($('#pswd1'));
-      isValid = false;
-    }
-
-    // 이메일 : 선택
-    var emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/; // 이메일 유효성 검사
-    var emailValue = $('#email').val();
-    if (emailValue && !emailRegex.test(emailValue)) {
-      checkInputValue($('#email'));
-      isValid = false;
-    }
-
-    return isValid;
-  }
-
-  // blur 이벤트에 반응하여 input 요소에서 포커스가 벗어날 때마다 checkInputValue 함수 실행
-  $('#id, #pswd1, #password, #email').on('blur', function () {
-    checkInputValue($(this));
-  });
-
-  $('#join-btn').click(function (event) {
-    event.preventDefault(); // 버튼의 기본 동작을 막음
-    if (checkInputValues()) {
-      window.location.replace('index.html');
-    }
-  });
-});
-
-*/
