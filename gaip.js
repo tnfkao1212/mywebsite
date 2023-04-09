@@ -62,10 +62,10 @@ window.onload = function () {
     //입력값과 정규식 범위와 같지 않다면
     innerReset(error); // 초기화 메서드 호출
     var emailLimit = /[0-9a-zA-Z-_.]/; // 정규식 0~9, a~z, A~Z, -, _, .내에서만 입력가능
-    if (!emailLimit.test(input[5].value)) {
+    if (!emailLimit.test(input[4].value)) {
       //입력값과 정규식 범위와 같지 않다면
       // 이메일의 오류 문구삽입
-      document.getElementById(errorId[5]).innerHTML =
+      document.getElementById(errorId[4]).innerHTML =
         ' 올바른 형식이 아닙니다. 영문,숫자, (-)(_)(.) 입력만 가능합니다.';
     }
   };
@@ -118,8 +118,8 @@ window.onload = function () {
     }
 
     // [ email 아이디 유효성검사 ]
-    if (!emailLimit.test(input[5].value)) {
-      document.getElementById(errorId[5]).innerHTML =
+    if (!emailLimit.test(input[4].value)) {
+      document.getElementById(errorId[4]).innerHTML =
         ' 올바른 형식이 아닙니다. 영문,숫자, (-)(_)(.) 외 입력은 불가합니다.';
       join.email.focus(); // 포커스 이동
       return false;
