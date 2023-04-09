@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>gaip</title>
+    <link rel="stylesheet" href="login.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="gaip.js"></script>
+  </head>
+
+  <body>
+    <section class="login-form">
+      <div>
+        <a href="index.html" class="logo">
+          <h1 class="blind">회원 가입</h1>
+        </a>
+      </div>
+      
+      <form method="post" name="join" id="join" action="submit.php">
+        <div id="container">
+          <div class="row_group">
+              <div class="userInput">
+      <!-- 아이디 입력 -->
+                <h3 class="list">아이디<br><span id="idError"></span></h3>
+                <span class="box int_id" ><input type="text" id="id" class="int check"
+                    maxlength="20"></span>
+              </div>
+              <div class="userInput">
+      <!-- 비밀번호 입력 -->
+                <h3 class="list">비밀번호<br><span id="pwError"></span></h3>
+                <span class="box int_id"><input type="password" id="pw" class="int check"
+                    maxlength="20"></span>
+              </div>
+      <!-- 비밀번호 재확인 입력 -->
+              <div class="userInput">
+                <h3 class="list">비밀번호 확인<br><span id="pwCheckError"></span></h3>
+                <span class="box int_id"><input type="password" id="pwCheck" class="int check" 
+                    maxlength="20"></span>
+              </div>
+          </div>
+          <div class="row_group">
+            <!-- 닉네임 입력 -->
+                  <div class="userInput">
+                      <h3 class="list">닉네임<br><span id="nameError"></span></h3>
+                      <span class="box int_id"><input type="text" id="name" class="int check"
+                        maxlength="20"></span>
+                  </div>
+    
+    
+        <!-- 이메일 입력 -->
+        <div class="userInput">
+          <h3 class="list">이메일<br><span id="emailError"></span></h3>
+          <span class="box int_id"> <input type="text" id="email" maxlength="20" class="check" > 
+              <span>   @ </span> 
+                <!-- 이메일 택일 -->
+                <select id="mail_Select">
+                    <option>naver.com</option>
+                </select>
+          </span>
+        </div>
+
+      <div class="btn_area">
+        <input type="submit" value="가입하기" id="btnJoin" class="btn_type btn_primary">
+      </div>
+  </div>
+</div>
+</form>
+</div>
+</body>
+</html>
+
+
+
+        <!-- <form action="test.php" method="POST"> -->
+        <!--
+        <div>
+          <h3 class="join_title">
+            <label for="name">아이디</label>
+          </h3>
+          <span class="box int_id">
+            <input
+              type="text"
+              id="id"
+              name="id"
+              class="int"
+              title="ID"
+              maxlength="20"
+            />
+          </span>
+          <span class="error_box" id="idMsg" style aria-live="assertive"
+            >필수 정보입니다.</span
+          >
+        </div>
+        <div>
+          <h3 class="join_title">
+            <label for="pswd1">비밀번호</label>
+          </h3>
+          <span class="box int_pw" id="pswd1Img">
+            <input
+              type="password"
+              id="pswd1"
+              name="pswd1"
+              class="int"
+              title="비밀번호 입력"
+              aria-describedby="pswd1Msg"
+              maxlength="20"
+            />
+          </span>
+          <span class="error_box" id="pswd1Msg" style aria-live="assertive"
+            >필수 정보입니다.</span>
+        </div>
+        <div>
+          <h3 class="join_title">
+            <label for="password">비밀번호 확인</label>
+          </h3>
+          <span class="box int_pw">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="int"
+              title="PW"
+              maxlength="20"
+            />
+          </span>
+          <span class="error_box" id="pw2Msg" style aria-live="assertive"
+            >필수 정보입니다.</span
+          >
+        </div>
+        <div>
+          <h3 class="join_title">
+            <label for="nick">닉네임</label>
+          </h3>
+          <span class="box int_nickname">
+            <input
+              type="text"
+              id="nickname"
+              name="nickname"
+              class="int"
+              title="NICKNAME"
+              maxlength="20"
+            />
+          </span>
+        <div>
+          <h3 class="join_title">
+            <label for="email">이메일</label>
+          </h3>
+          <span class="box int_email">
+            <input
+              type="text"
+              id="email"
+              name="email"
+              placeholder="선택입력"
+              aria-label="선택입력"
+              class="int"
+              title="EMAIL"
+              maxlength="100"
+            />
+          </span>
+          <span class="error_box" id="emailMsg" style aria-live="assertive"
+            >필수 정보입니다.</span
+          >
+        </div>
+        <div class="btn-area">
+          <button onclick="clickRegister()" id="join-btn" type="submit">회원가입</button>
+        </div>-->
+      
+  </body>
+</html>
