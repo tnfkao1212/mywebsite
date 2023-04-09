@@ -124,13 +124,6 @@ window.onload = function () {
       join.email.focus(); // 포커스 이동
       return false;
     }
-    var consentCheck = document.getElementById('check');
-    //console.log(consentCheck);
-    if (!consentCheck.checked) {
-      document.getElementById('consentError').innerHTML =
-        '개인정보 수집이용 동의를 해주세요.';
-      return false;
-    }
 
     alert(
       '회원가입이 완료되었습니다. 참치라이더의 멤버가 되신 것을 환영합니다!! :D'
